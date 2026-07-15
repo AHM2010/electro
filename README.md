@@ -51,24 +51,55 @@ Electro is a responsive, front-end electronics storefront for browsing smartphon
 
 ```text
 1.4-Electro/
-|-- public/                 # Favicons and web app manifest assets
-|-- src/
-|   |-- assets/images/      # Product, hero, and brand imagery
-|   |-- components/         # Shared storefront UI components
-|   |   `-- checkout/       # Checkout fields, sections, delivery, and summary UI
-|   |-- context/            # Cart context and provider
-|   |-- data/               # Product catalog and navigation definitions
-|   |-- hooks/              # Cart access and checkout form logic
-|   |-- layouts/            # Shared navigation, drawers, main content, and footer
-|   |-- pages/              # Catalog, contact, checkout, and product pages
-|   |-- utils/              # Currency, delivery, and order-total formatters
-|   |-- App.jsx             # Router, route metadata, and landing-page composition
-|   |-- index.css           # Tailwind import and global typography
-|   `-- main.jsx            # React entry point and global providers
+|-- .agents/                  # Project agent configuration
+|-- .git/                     # Git repository metadata
+|-- .gitignore
+|-- dist/                     # Production build output
 |-- eslint.config.js
 |-- index.html
+|-- node_modules/             # Installed dependencies
+|-- package-lock.json
 |-- package.json
-|-- vercel.json             # SPA fallback rewrite
+|-- public/                   # Static assets and web manifest files
+|-- README.md
+|-- screenshots/              # Project screenshots
+|-- src/
+|   |-- App.jsx
+|   |-- assets/
+|   |-- components/
+|   |   |-- checkout/
+|   |   |-- BrandStatement.jsx
+|   |   |-- CartDrawer.jsx
+|   |   |-- ErrorBoundary.jsx
+|   |   |-- FeaturesBar.jsx
+|   |   |-- Footer.jsx
+|   |   |-- HamburgerButton.jsx
+|   |   |-- Headline.jsx
+|   |   |-- HeroSection.jsx
+|   |   |-- Navbar.jsx
+|   |   |-- NavigationDrawer.jsx
+|   |   |-- ProductCard.jsx
+|   |   |-- ProductDetails.jsx
+|   |   |-- ProductGrid.jsx
+|   |   |-- ProductList.jsx
+|   |   |-- SearchDrawer.jsx
+|   |   |-- SearchResults.jsx
+|   |-- context/
+|   |-- data/
+|   |-- hooks/
+|   |-- index.css
+|   |-- layouts/
+|   |-- main.jsx
+|   |-- pages/
+|   |   |-- Checkout.jsx
+|   |   |-- Contact.jsx
+|   |   |-- Home.jsx
+|   |   |-- Laptops.jsx
+|   |   |-- Phones.jsx
+|   |   |-- ProductPage.jsx
+|   |   |-- Tablets.jsx
+|   |-- utils/
+|-- vercel.json               # SPA fallback rewrite
 `-- vite.config.js
 ```
 
