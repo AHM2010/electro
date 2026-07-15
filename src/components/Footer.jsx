@@ -109,7 +109,7 @@ export default function Footer() {
         <div className="flex items-center gap-2 text-sm">
           <span>Made by</span>
           <a
-            href="https://ahm2010.github.io/Ahmed-Portfolio/"
+            href="https://ahm2010.github.io/portfolio/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-blue-500 underline-offset-4 transition-colors duration-300 hover:text-blue-700 hover:underline"
