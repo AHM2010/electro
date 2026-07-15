@@ -11,15 +11,15 @@ Electro is a responsive, front-end electronics storefront for browsing smartphon
 
 ## Live Demo
 
-**Demo URL:** [_URL_](https://electro-one.vercel.app/)
+**Demo URL:** (https://electro-one.vercel.app/)
 
 ## Screenshots
 
 Screenshots have not yet been added.
 
-| Home                                             | Product details                                                | Checkout                                                 |
-| ------------------------------------------------ | -------------------------------------------------------------- | -------------------------------------------------------- |
-| [_Home Page_](./src/assets/images/home-page.png) | [_Product Page_](./src/assets/images/product-details-page.png) | [_Checkout Page_](./src/assets/images/checkout-page.png) |
+| Home                                | Product details                                | Checkout                                |
+| ----------------------------------- | ---------------------------------------------- | --------------------------------------- |
+| (./src/assets/images/home-page.png) | (./src/assets/images/product-details-page.png) | (./src/assets/images/checkout-page.png) |
 
 ## Features
 
@@ -177,7 +177,7 @@ All routes render inside the shared `Layout`, which provides navigation, search,
 **Ahmed Ashraf**
 
 - GitHub: [@AHM2010](https://github.com/AHM2010)
-- Repository: [AHM2010/Electro](https://github.com/AHM2010/Electro)
+- Repository: [AHM2010/electro](https://github.com/AHM2010/Electro)
 
 ## License
 
