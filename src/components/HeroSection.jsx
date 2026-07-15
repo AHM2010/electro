@@ -49,16 +49,13 @@ export default function HeroSection() {
       data-aos-delay="100"
       data-aos-offset="0"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden md:aspect-[128/75] lg:aspect-[48/17]">
+      <div className="relative aspect-3/4 w-full overflow-hidden md:aspect-128/75 lg:aspect-48/17">
         <div
           className="flex h-full w-full transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${currentImage * 100}%)` }}
         >
           {slides.map((slide, index) => (
-            <picture
-              key={slide.label}
-              className="block h-full w-full flex-shrink-0"
-            >
+            <picture key={slide.label} className="block h-full w-full shrink-0">
               <source media="(min-width:1024px)" srcSet={slide.laptop} />
               <source media="(min-width:768px)" srcSet={slide.tablet} />
               <img

@@ -30,7 +30,7 @@ export default function CartDrawer({ isOpen, closeCart }) {
       <aside
         className={`
           fixed top-0 right-0
-          h-screen w-[420px] max-w-full
+          h-screen w-105 max-w-full
           bg-white
           z-60
           transition-transform duration-300 ease-in-out
@@ -69,7 +69,7 @@ export default function CartDrawer({ isOpen, closeCart }) {
                   loading="lazy"
                 />
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium max-w-[95%] break-words">
+                  <h3 className="font-medium max-w-[95%] wrap-break-words">
                     {item.title || "Untitled product"}
                   </h3>
                 </div>

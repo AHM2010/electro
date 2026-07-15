@@ -26,7 +26,7 @@ function SearchResults({
 
   return (
     <div className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden w-full max-w-6xl mx-auto">
-      <div className="max-h-[400px] overflow-y-auto p-6">
+      <div className="max-h-100 overflow-y-auto p-6">
         {results.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-lg font-semibold text-gray-800">
@@ -67,7 +67,7 @@ function SearchResults({
                     <img
                       src={product.images?.[0] || ""}
                       alt={product.title || "Product"}
-                      className="w-16 h-20 object-cover rounded-lg border border-gray-200 flex-shrink-0"
+                      className="w-16 h-20 object-cover rounded-lg border border-gray-200 shrink-0"
                       loading="lazy"
                     />
                     <span className="flex-1 min-w-0">

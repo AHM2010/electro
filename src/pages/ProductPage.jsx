@@ -45,7 +45,7 @@ export default function ProductPage({
               loading="eager"
             />
           ) : (
-            <div className="w-full h-[450px] bg-gray-100 rounded-2xl" />
+            <div className="w-full h-112.5 bg-gray-100 rounded-2xl" />
           )}
 
           {galleryImages.length > 0 && (
@@ -75,7 +75,7 @@ export default function ProductPage({
           <div className="mt-8">
             <p className="mb-4 font-medium text-gray-800">Quantity</p>
 
-            <div className="flex items-center justify-between w-[170px] border border-gray-300 rounded-lg overflow-hidden">
+            <div className="flex items-center justify-between w-42.5 border border-gray-300 rounded-lg overflow-hidden">
               <button
                 type="button"
                 onClick={decreaseQuantity}
@@ -135,7 +135,7 @@ export default function ProductPage({
             >
               <span>Product Description</span>
               <div
-                className={`absolute left-0 bottom-0 hidden h-[3px] w-full origin-left bg-blue-500 transition-transform duration-300 md:block ${activeTab === "description" ? "scale-x-100" : "scale-x-0"}`}
+                className={`absolute left-0 bottom-0 hidden h-0.75 w-full origin-left bg-blue-500 transition-transform duration-300 md:block ${activeTab === "description" ? "scale-x-100" : "scale-x-0"}`}
               />
             </button>
 
@@ -151,7 +151,7 @@ export default function ProductPage({
             >
               <span>Shipping & Return</span>
               <div
-                className={`absolute left-0 bottom-0 hidden h-[3px] w-full origin-left bg-blue-500 transition-transform duration-300 md:block ${activeTab === "shipping" ? "scale-x-100" : "scale-x-0"}`}
+                className={`absolute left-0 bottom-0 hidden h-0.75 w-full origin-left bg-blue-500 transition-transform duration-300 md:block ${activeTab === "shipping" ? "scale-x-100" : "scale-x-0"}`}
               />
             </button>
           </div>
