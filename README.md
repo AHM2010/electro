@@ -11,7 +11,7 @@ Electro is a responsive, front-end electronics storefront for browsing smartphon
 
 ## Live Demo
 
-**Demo URL:** [_URL_]https://electro-one.vercel.app/
+**Demo URL:** https://electro-one.vercel.app/
 
 ## Screenshots
 
