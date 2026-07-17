@@ -6,25 +6,25 @@ import {
   getOrderTotal,
 } from "../../utils/formatters";
 
-function OrderSummaryItem({ item }) {
+function OrderSummaryItem({ item, compact = false }) {
   const lineTotal =
     (Number(item.price) || 0) * (Number(item.quantity) || 0);
 
   return (
-    <li className="flex items-center gap-3">
+    <li className={`flex items-center ${compact ? "gap-2" : "gap-3"}`}>
       <img
         src={item.images?.[0]}
         alt={item.title || "Product"}
-        className="h-16 w-16 shrink-0 rounded-lg border border-gray-100 object-cover"
+        className={`${compact ? "h-12 w-12" : "h-16 w-16"} shrink-0 rounded-lg border border-gray-100 object-cover`}
         loading="lazy"
       />
 
       <div className="min-w-0 flex-1">
-        <p className="truncate font-medium text-gray-900">{item.title}</p>
+        <p className={`${compact ? "line-clamp-2 text-sm leading-snug" : "truncate"} font-medium text-gray-900`}>{item.title}</p>
         <p className="mt-0.5 text-sm text-gray-500">Qty: {item.quantity}</p>
       </div>
 
-      <p className="shrink-0 text-sm font-semibold text-gray-900">
+      <p className={`${compact ? "text-xs" : "text-sm"} shrink-0 font-semibold text-gray-900`}>
         {formatCurrency(lineTotal)}
       </p>
     </li>
@@ -78,13 +78,13 @@ function OrderSummary({
           ) : (
             <ul className="space-y-4" aria-label="Cart items">
               {cartItems.map((item) => (
-                <OrderSummaryItem key={item.id} item={item} />
+                <OrderSummaryItem key={item.id} item={item} compact={compact} />
               ))}
             </ul>
           )}
         </div>
 
-        <div className="mt-6 space-y-2 border-t border-gray-100 pt-4">
+        <div className={`${compact ? "mt-4 pt-3" : "mt-6 pt-4"} space-y-2 border-t border-gray-100`}>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Subtotal</span>
             <span>{formatCurrency(subtotal)}</span>

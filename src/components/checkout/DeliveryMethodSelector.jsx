@@ -31,7 +31,7 @@ function DeliveryMethodSelector({ value, onChange }) {
           return (
             <label
               key={option.id}
-              className={`relative flex cursor-pointer gap-3 rounded-lg border p-4 transition-all duration-200 ${
+              className={`relative flex cursor-pointer gap-3 rounded-lg border p-3 transition-all duration-200 sm:p-4 ${
                 isSelected
                   ? "border-blue-500 bg-blue-50/60 ring-2 ring-blue-500/20"
                   : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"

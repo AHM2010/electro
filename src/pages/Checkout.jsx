@@ -91,13 +91,10 @@ export default function Checkout() {
 
   return (
     <div
-      className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
-      data-aos="fade-zoom-in"
-      data-aos-easing="ease-in-back"
-      data-aos-offset="0"
+      className="mx-auto max-w-7xl px-3 pb-6 pt-5 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
     >
-      <header className="mb-6 sm:mb-8">
-        <h1 className="title text-3xl font-semibold text-blue-600 sm:text-4xl">
+      <header className="mb-5 sm:mb-8">
+        <h1 className="title text-3xl font-semibold leading-tight text-blue-600 sm:text-4xl">
           Checkout
         </h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-gray-500 sm:text-base">
@@ -120,7 +117,7 @@ export default function Checkout() {
         </div>
       )}
 
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_420px] xl:gap-10">
+      <div className="grid items-start gap-4 sm:gap-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_420px] xl:gap-10">
         <div className="contents lg:block">
           <div className="order-1 lg:hidden">
             <OrderSummary
@@ -136,7 +133,7 @@ export default function Checkout() {
             id="checkout-form"
             onSubmit={handleSubmit}
             noValidate
-            className="order-2 space-y-5 lg:order-0"
+            className="order-2 space-y-4 sm:space-y-5 lg:order-0"
             aria-label="Checkout form"
           >
             <CheckoutSection
@@ -220,7 +217,7 @@ export default function Checkout() {
               description="Used for your invoice and payment verification."
               icon={Receipt}
             >
-              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 transition-colors hover:bg-gray-100/80">
+              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 px-3 py-3 transition-colors hover:bg-gray-100/80 sm:px-4">
                 <input
                   type="checkbox"
                   name="billingSameAsShipping"
@@ -423,7 +420,7 @@ export default function Checkout() {
         </aside>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 p-4 shadow-[0_-4px_24px_rgba(0,0,0,0.06)] backdrop-blur-sm lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-4px_24px_rgba(0,0,0,0.06)] backdrop-blur-sm sm:px-6 lg:hidden">
         <div className="mx-auto flex max-w-7xl items-center gap-3">
           <div className="min-w-0 flex-1">
             <p className="text-xs text-gray-500">Total</p>
@@ -435,14 +432,14 @@ export default function Checkout() {
           <button
             type="submit"
             form="checkout-form"
-            className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-lg bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 cursor-pointer"
+            className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-lg bg-blue-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 cursor-pointer sm:px-6"
           >
             Place order
           </button>
         </div>
       </div>
 
-      <div className="h-24 lg:hidden" aria-hidden="true" />
+      <div className="h-20 sm:h-24 lg:hidden" aria-hidden="true" />
     </div>
   );
 }
