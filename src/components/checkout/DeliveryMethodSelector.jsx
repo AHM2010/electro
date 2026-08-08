@@ -33,8 +33,8 @@ function DeliveryMethodSelector({ value, onChange }) {
               key={option.id}
               className={`relative flex cursor-pointer gap-3 rounded-lg border p-3 transition-all duration-200 sm:p-4 ${
                 isSelected
-                  ? "border-blue-500 bg-blue-50/60 ring-2 ring-blue-500/20"
-                  : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                  ? "border-blue-500 bg-blue-50/60 ring-2 ring-blue-500/20 dark:bg-blue-500/10"
+                  : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800"
               }`}
             >
               <input
@@ -59,7 +59,7 @@ function DeliveryMethodSelector({ value, onChange }) {
 
               <span className="min-w-0 flex-1">
                 <span className="flex items-start justify-between gap-2">
-                  <span className="font-medium text-gray-900">
+                  <span className="font-medium text-gray-900 dark:text-white">
                     {option.label}
                   </span>
                   <span className="shrink-0 text-sm font-semibold text-blue-600">

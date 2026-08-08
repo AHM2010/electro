@@ -91,7 +91,7 @@ export default function Checkout() {
 
   return (
     <div
-      className="mx-auto max-w-7xl px-3 pb-6 pt-5 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
+      className="checkout-page mx-auto max-w-7xl px-3 pb-24 pt-5 sm:px-6 sm:py-10 lg:px-8 lg:py-12"
     >
       <header className="mb-5 sm:mb-8">
         <h1 className="title text-3xl font-semibold leading-tight text-blue-600 sm:text-4xl">

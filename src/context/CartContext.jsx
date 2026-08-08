@@ -24,35 +24,6 @@ export function CartProvider({ children }) {
     }
   }, [cartItems]);
 
-  useEffect(() => {
-    const saveScroll = () => {
-      try {
-        localStorage.setItem("scrollPosition", String(window.scrollY));
-      } catch {
-        // Scroll restoration is optional; ignore storage failures.
-      }
-    };
-
-    window.addEventListener("scroll", saveScroll);
-
-    return () => {
-      window.removeEventListener("scroll", saveScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    try {
-      const savedPosition = localStorage.getItem("scrollPosition");
-      const parsedPosition = Number(savedPosition);
-
-      if (Number.isFinite(parsedPosition) && parsedPosition > 0) {
-        window.scrollTo(0, parsedPosition);
-      }
-    } catch {
-      // Ignore invalid or unavailable scroll storage.
-    }
-  }, []);
-
   const addToCart = useCallback((product, quantity = 1) => {
     if (!product?.id) return;
 

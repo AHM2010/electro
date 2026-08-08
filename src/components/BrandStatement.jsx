@@ -1,13 +1,13 @@
 export default function BrandStatement() {
   return (
-    <div className="py-20 px-6 bg-white text-center" data-aos="fade-up">
-      <h1 className="title text-5xl md:text-7xl lg:text-8xl font-semibold leading-tight tracking-tight text-gray-900 max-w-6xl mx-auto">
-        Electro is not only a <span className="title text-blue-500">Shop</span>
-      </h1>
-
-      <p className="mt-8 text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        It's a new way to experience technology.
-      </p>
-    </div>
+    <section id="why-electro" className="page-section bg-slate-950 text-white">
+      <div className="site-container grid items-center gap-8 lg:grid-cols-[1.1fr_.9fr]">
+        <div>
+          <p className="eyebrow text-blue-300">Technology, made simple</p>
+          <h2 className="title mt-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">Premium devices. Clear choices. Service you can trust.</h2>
+        </div>
+        <p className="max-w-xl text-base leading-7 text-slate-300 lg:justify-self-end">Electro brings standout phones, tablets, and laptops together in one focused shopping experience—so you can compare confidently and choose technology that fits your life.</p>
+      </div>
+    </section>
   );
 }

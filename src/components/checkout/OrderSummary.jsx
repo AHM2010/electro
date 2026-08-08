@@ -15,13 +15,13 @@ function OrderSummaryItem({ item, compact = false }) {
       <img
         src={item.images?.[0]}
         alt={item.title || "Product"}
-        className={`${compact ? "h-12 w-12" : "h-16 w-16"} shrink-0 rounded-lg border border-gray-100 object-cover`}
+        className={`${compact ? "h-12 w-12" : "h-16 w-16"} shrink-0 rounded-lg border border-slate-100 bg-slate-50 object-contain p-1 dark:border-slate-700 dark:bg-slate-900`}
         loading="lazy"
       />
 
       <div className="min-w-0 flex-1">
-        <p className={`${compact ? "line-clamp-2 text-sm leading-snug" : "truncate"} font-medium text-gray-900`}>{item.title}</p>
-        <p className="mt-0.5 text-sm text-gray-500">Qty: {item.quantity}</p>
+        <p className={`${compact ? "line-clamp-2 text-sm leading-snug" : "truncate"} font-medium text-slate-900 dark:text-white`}>{item.title}</p>
+        <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Qty: {item.quantity}</p>
       </div>
 
       <p className={`${compact ? "text-xs" : "text-sm"} shrink-0 font-semibold text-gray-900`}>
@@ -54,12 +54,12 @@ function OrderSummary({
   return (
     <aside
       aria-labelledby="order-summary-heading"
-      className={`rounded-xl border border-gray-200 bg-white shadow-sm ${className}`}
+      className={`surface-card ${className}`}
     >
       <div className={`${compact ? "p-4" : "p-5 sm:p-6"}`}>
         <h2
           id="order-summary-heading"
-          className="text-lg font-semibold text-gray-900 sm:text-xl"
+          className="text-lg font-bold text-slate-900 dark:text-white sm:text-xl"
         >
           Order summary
         </h2>
@@ -84,13 +84,13 @@ function OrderSummary({
           )}
         </div>
 
-        <div className={`${compact ? "mt-4 pt-3" : "mt-6 pt-4"} space-y-2 border-t border-gray-100`}>
-          <div className="flex justify-between text-sm text-gray-600">
+        <div className={`${compact ? "mt-4 pt-3" : "mt-6 pt-4"} space-y-2 border-t border-slate-100 dark:border-slate-800`}>
+          <div className="flex justify-between text-sm text-slate-600 dark:text-slate-300">
             <span>Subtotal</span>
             <span>{formatCurrency(subtotal)}</span>
           </div>
 
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="flex justify-between text-sm text-slate-600 dark:text-slate-300">
             <span>{deliveryLabel}</span>
             <span
               className={
@@ -103,7 +103,7 @@ function OrderSummary({
             </span>
           </div>
 
-          <div className="flex justify-between border-t border-gray-100 pt-3 text-base font-semibold text-gray-900">
+          <div className="flex justify-between border-t border-slate-100 pt-3 text-base font-bold text-slate-900 dark:border-slate-800 dark:text-white">
             <span>Total</span>
             <span>{formatCurrency(total)}</span>
           </div>

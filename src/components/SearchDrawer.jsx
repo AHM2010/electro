@@ -1,91 +1,24 @@
+import { Search, ShoppingCart, X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import Logo from "../assets/images/electro-logo.png";
 import { useCart } from "../hooks/useCart";
-import { ShoppingCart } from "lucide-react";
-import { inputStyles } from "./checkout/FormField";
 
-export default function SearchDrawer({
-  isOpen,
-  closeSearch,
-  openCart,
-  searchTerm = "",
-  setSearchTerm = () => {},
-}) {
+export default function SearchDrawer({ isOpen, closeSearch, openCart, searchTerm = "", setSearchTerm = () => {} }) {
   const { totalItems } = useCart();
   const inputRef = useRef(null);
-
   useEffect(() => {
-    if (isOpen) {
-      inputRef.current?.focus();
-    }
-  }, [isOpen]);
+    if (!isOpen) return undefined;
+    inputRef.current?.focus();
+    const onKeyDown = (event) => event.key === "Escape" && closeSearch();
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, closeSearch]);
 
   return (
-    <>
-      <div
-        onClick={closeSearch}
-        className={`
-          fixed inset-0
-          bg-black/50
-          backdrop-blur-sm
-          transition-all duration-300
-          z-40
-          ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}
-        `}
-      />
-
-      <aside
-        className={`
-          fixed
-          top-0
-          left-0
-          w-full
-          h-40
-          max-h-40
-          bg-white
-          z-50
-          transition-transform
-          duration-300
-          overflow-hidden
-          ${isOpen ? "translate-y-0" : "-translate-y-full"}
-        `}
-        aria-hidden={!isOpen}
-      >
-        <div className="mx-auto flex h-full w-full items-center justify-between gap-3 px-4 sm:w-[90%] sm:gap-4 sm:px-6">
-          <div className="hidden sm:block">
-            <img src={Logo} alt="Electro" className="h-17" loading="eager" />
-          </div>
-
-          <div className="relative min-w-0 flex-1 sm:w-[60%] sm:flex-none">
-            <input
-              ref={inputRef}
-              type="search"
-              placeholder="Search products"
-              className={inputStyles}
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-            />
-          </div>
-
-          <div className="relative group w-fit text-gray-700 hover:text-blue-500 transition-colors duration-300">
-            <button type="button" onClick={openCart} aria-label="Open cart">
-              <ShoppingCart className="w-6 h-6 cursor-pointer" />
-              {totalItems > 0 && (
-                <div
-                  onClick={openCart}
-                  className="absolute -top-1.5 -right-3 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center font-semibold cursor-pointer"
-                >
-                  {totalItems}
-                </div>
-              )}
-            </button>
-
-            <div className="absolute left-1/2 -translate-x-1/2 top-10 z-10 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 bg-blue-500 text-white text-sm px-3 py-2 rounded-md whitespace-nowrap pointer-events-none">
-              Cart
-            </div>
-          </div>
-        </div>
+    <div className={`fixed inset-0 z-50 ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
+      <button type="button" onClick={closeSearch} aria-label="Close search" className={`absolute inset-0 h-full w-full bg-slate-950/55 backdrop-blur-sm transition-opacity ${isOpen ? "opacity-100" : "opacity-0"}`} />
+      <aside role="dialog" aria-modal="true" aria-label="Search products" aria-hidden={!isOpen} className={`absolute inset-x-0 top-0 border-b border-slate-200 bg-white shadow-xl transition-transform duration-300 dark:border-slate-800 dark:bg-slate-950 ${isOpen ? "translate-y-0" : "-translate-y-full"}`}>
+        <div className="site-container flex min-h-40 items-center gap-2 sm:gap-3"><div className="relative min-w-0 flex-1"><Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" /><label htmlFor="site-search" className="sr-only">Search products</label><input ref={inputRef} id="site-search" type="search" placeholder="Search phones, tablets, laptops…" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} className="h-13 w-full rounded-xl border border-slate-300 bg-slate-50 pl-12 pr-10 text-base text-slate-950 placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white" />{searchTerm && <button type="button" onClick={() => setSearchTerm("")} className="absolute right-2 top-1/2 -translate-y-1/2 icon-button h-9 w-9" aria-label="Clear search"><X className="h-4 w-4" /></button>}</div><button type="button" onClick={openCart} className="icon-button relative" aria-label={`Open cart with ${totalItems} items`}><ShoppingCart className="h-5 w-5" />{totalItems > 0 && <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">{totalItems}</span>}</button><button type="button" onClick={closeSearch} className="icon-button" aria-label="Close search"><X className="h-5 w-5" /></button></div>
       </aside>
-    </>
+    </div>
   );
 }

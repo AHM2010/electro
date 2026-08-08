@@ -62,12 +62,7 @@ export default function Layout({ children }) {
       )}
 
       <CartDrawer isOpen={isCartOpen} closeCart={closeCart} />
-      <main
-        className="pt-20"
-        data-aos="fade-zoom-in"
-        data-aos-easing="ease-in-back"
-        data-aos-offset="0"
-      >
+      <main className="min-h-screen pt-18 lg:pt-20">
         {children}
       </main>
       <Footer />

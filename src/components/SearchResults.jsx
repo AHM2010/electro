@@ -25,11 +25,11 @@ function SearchResults({
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden w-full max-w-6xl mx-auto">
+    <div className="surface-card mx-auto w-full max-w-5xl overflow-hidden">
       <div className="max-h-100 overflow-y-auto p-6">
         {results.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-lg font-semibold text-gray-800">
+            <p className="text-lg font-semibold text-slate-800 dark:text-white">
               No products found
             </p>
             <p className="mt-2 text-sm text-gray-500">
@@ -60,18 +60,18 @@ function SearchResults({
                 {results.slice(0, 5).map((product) => (
                   <button
                     key={`product-${product.id ?? product.slug}`}
-                    className="flex w-full gap-3 cursor-pointer items-start hover:bg-gray-100 transition-colors duration-200 rounded-lg p-2 text-left"
+                    className="flex w-full gap-3 cursor-pointer items-start hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-200 rounded-lg p-2 text-left"
                     type="button"
                     onClick={() => handleProductClick(product.slug)}
                   >
                     <img
                       src={product.images?.[0] || ""}
                       alt={product.title || "Product"}
-                      className="w-16 h-20 object-cover rounded-lg border border-gray-200 shrink-0"
+                      className="h-18 w-18 object-contain rounded-lg border border-slate-200 bg-slate-50 p-1 dark:border-slate-700 dark:bg-slate-900 shrink-0"
                       loading="lazy"
                     />
                     <span className="flex-1 min-w-0">
-                      <span className="block font-medium text-gray-900 text-sm line-clamp-2">
+                      <span className="block font-medium text-slate-900 dark:text-white text-sm line-clamp-2">
                         {product.title || "Untitled product"}
                       </span>
                       <span className="mt-1 block text-gray-600 text-sm font-semibold">
