@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Search, ShoppingCart } from "lucide-react";
-import Logo from "../assets/images/electro-logo.png";
+import WideLogoLight from "../assets/logos/electro-logo-wide-light.png";
+import WideLogoDark from "../assets/logos/electro-logo-wide-dark.png";
+import MiniLogoLight from "../assets/logos/electro-logo-mini-light.png";
+import MiniLogoDark from "../assets/logos/electro-logo-mini-dark.png";
 import { useCart } from "../hooks/useCart";
 import HamburgerButton from "./HamburgerButton";
 import NavigationDrawer from "./NavigationDrawer";
@@ -39,9 +42,15 @@ export default function Navbar({ openCart, openSearch }) {
         }`}
       >
         <div className="site-container flex h-18 items-center justify-between gap-4 lg:h-20">
-          <Link to="/" className="flex shrink-0 items-center gap-1.5" aria-label="Electro home">
-            <img src={Logo} alt="" className="h-10 w-10 object-cover object-left" loading="eager" />
-            <span className="title hidden text-base font-extrabold tracking-[0.16em] text-slate-950 dark:text-white sm:inline">ELECTRO</span>
+          <Link to="/" className="flex shrink-0 items-center" aria-label="Electro home">
+            <span className="sm:hidden">
+              <img src={MiniLogoLight} alt="Electro" className="h-10 w-10 dark:hidden" loading="eager" />
+              <img src={MiniLogoDark} alt="Electro" className="hidden h-10 w-10 dark:block" loading="eager" />
+            </span>
+            <span className="hidden sm:block">
+              <img src={WideLogoLight} alt="Electro" className="h-11 w-auto dark:hidden" loading="eager" />
+              <img src={WideLogoDark} alt="Electro" className="hidden h-11 w-auto dark:block" loading="eager" />
+            </span>
           </Link>
 
           <div className="hidden items-center gap-1 lg:flex">
