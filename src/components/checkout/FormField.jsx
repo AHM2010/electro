@@ -24,11 +24,15 @@ function FormField({
   const id = idProp || `${name}-${generatedId}`;
   const helperId = helperText ? `${id}-helper` : undefined;
   const errorId = error ? `${id}-error` : undefined;
-  const describedBy = [errorId, helperId].filter(Boolean).join(" ") || undefined;
+  const describedBy =
+    [errorId, helperId].filter(Boolean).join(" ") || undefined;
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+      <label
+        htmlFor={id}
+        className="block text-sm font-semibold text-slate-700 dark:text-slate-200"
+      >
         {label}
         {required && (
           <span className="ml-0.5 text-red-600" aria-hidden="true">
@@ -61,7 +65,11 @@ function FormField({
       />
 
       {error && (
-        <p id={errorId} role="alert" className="mt-1.5 text-xs font-medium text-red-600">
+        <p
+          id={errorId}
+          role="alert"
+          className="mt-1.5 text-xs font-medium text-red-600"
+        >
           {error}
         </p>
       )}

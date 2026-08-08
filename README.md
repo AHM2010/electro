@@ -1,213 +1,258 @@
-# Electro
+<div align="center">
+  <img src="src/assets/logos/electro-logo-wide-light.png" alt="Electro" width="260" />
 
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![ESLint](https://img.shields.io/badge/ESLint-10-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
+  <p><strong>A responsive electronics storefront built for product discovery, cart management, and a polished demo checkout.</strong></p>
 
-Electro is a responsive, front-end electronics storefront for browsing smartphones, tablets, and laptops. It provides product discovery, detailed product pages, local cart persistence, and a validated demo checkout experience in a polished single-page application.
+  <p>
+    <a href="https://electro-one.vercel.app/"><strong>View live demo</strong></a>
+    ·
+    <a href="https://github.com/AHM2010/Electro">Repository</a>
+  </p>
 
-> This is a portfolio demonstration. Product data is stored locally, and checkout does not process real payments or submit orders to a backend.
+  <p>
+    <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React 19" /></a>
+    <a href="https://vite.dev/"><img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white" alt="Vite 8" /></a>
+    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4" /></a>
+    <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Deployed_on-Vercel-000000?logo=vercel&logoColor=white" alt="Deployed on Vercel" /></a>
+  </p>
+</div>
+
+## Overview
+
+Electro is a front-end e-commerce experience for browsing phones, tablets, and laptops. It combines a data-driven product catalog with responsive navigation, product search, detailed product pages, a persistent shopping cart, and a validated checkout flow.
+
+The project is designed as a portfolio demonstration of a modern React storefront. Product information is stored locally, browser storage preserves cart and checkout drafts, and order submission is simulated—there is no backend, user account system, inventory service, or real payment processing.
+
+## Highlights
+
+- Responsive storefront with dedicated desktop and mobile navigation
+- Light and dark themes with saved user preference
+- Eleven locally defined products across three categories
+- Search by product name or URL slug
+- Persistent cart with quantity controls and calculated subtotals
+- Product galleries, specifications, delivery estimates, and shipping details
+- Validated, responsive demo checkout with standard and express delivery
+- Accessible dialogs, form feedback, focus states, and semantic page structure
 
 ## Live Demo
 
-**Demo URL:** https://electro-one.vercel.app/
+Explore the deployed application at **[electro-one.vercel.app](https://electro-one.vercel.app/)**.
+
+> [!NOTE]
+> Electro is a demonstration storefront. Do not enter real payment information; checkout does not charge a card or send an order to a server.
 
 ## Screenshots
 
-| Home                                                  | Product details                                                             | Checkout                                                      |
-| ----------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| ![Electro home page](src/assets/images/home-page.png) | ![Electro product details page](src/assets/images/product-details-page.png) | ![Electro checkout page](src/assets/images/checkout-page.png) |
+### Storefront
+
+![Electro storefront](src/assets/images/home-page.png)
+
+| Product details | Checkout |
+| --- | --- |
+| ![Electro product details page](src/assets/images/product-details-page.png) | ![Electro checkout page](src/assets/images/checkout-page.png) |
 
 ## Features
 
-- Product catalog organized into phones, tablets, and laptops
-- Featured-product landing page with an automatic, manually selectable hero carousel
-- Client-side search by product name or slug
-- Product detail pages with image galleries, specifications, quantity selection, delivery estimates, and shipping information
-- Cart drawer with add, remove, increment, and decrement controls
-- Persistent cart and checkout draft data through `localStorage`
-- Responsive checkout with shipping, optional billing, delivery, and payment fields
-- Standard and express delivery options with calculated totals in SAR
-- Contact form validation and prefilled email handoff through `mailto:`
-- Route-aware page titles, scroll-to-top navigation, and animated page content
-- Empty states and a top-level React error boundary
+### Product discovery
+
+- Automatic hero carousel with manual slide controls
+- Featured-product section and complete catalog view
+- Dedicated phone, tablet, and laptop category pages
+- Search overlay with matching product results
+- Dynamic product routes based on readable slugs
+
+### Product experience
+
+- Multi-image product galleries
+- SAR currency formatting
+- Product descriptions and technical specifications
+- Quantity selection with guarded minimum values
+- Estimated delivery windows and shipping information
+- Responsive product cards with direct cart actions
+
+### Cart and checkout
+
+- Slide-in cart drawer with add, remove, increment, and decrement actions
+- Cart item count and subtotal calculations
+- Cart persistence through `localStorage`
+- Shipping, optional billing, delivery, and payment form sections
+- Standard delivery with free shipping above 7,000 SAR and a 30 SAR express surcharge
+- Inline validation, touched-field feedback, and card-number formatting
+- Checkout draft persistence and an empty-cart state
+
+### User experience
+
+- Responsive layouts from mobile navigation through desktop checkout
+- Light and dark themes that follow or override system preference
+- Route-aware document titles and scroll restoration
+- Animated page content with reduced-motion-aware CSS
+- Contact form validation with a prefilled `mailto:` handoff
+- Application-level error boundary and clear empty states
 
 ## Tech Stack
 
-| Area               | Technology                                   |
-| ------------------ | -------------------------------------------- |
-| UI                 | React 19, JSX                                |
-| Build tooling      | Vite 8                                       |
-| Styling            | Tailwind CSS 4, custom CSS                   |
-| Routing            | React Router DOM 7                           |
-| State              | React Context, custom hooks, component state |
-| Animation          | AOS                                          |
-| Icons              | Lucide React, Bootstrap Icons                |
-| Quality            | ESLint 10                                    |
-| Deployment support | Vercel SPA rewrite configuration             |
+| Responsibility | Technology |
+| --- | --- |
+| UI | React 19, JSX |
+| Routing | React Router DOM 7 |
+| Styling | Tailwind CSS 4, custom CSS |
+| State | React Context, custom hooks, component state |
+| Persistence | Browser `localStorage` |
+| Animation | AOS |
+| Icons | Lucide React, Bootstrap Icons |
+| Build tooling | Vite 8, PostCSS, Autoprefixer |
+| Code quality | ESLint 10 |
+| Deployment | Vercel SPA rewrites; static build preparation for Sites |
+
+## Architecture
+
+Electro is a client-rendered single-page application. `App.jsx` defines the route tree, while `Layout.jsx` supplies shared navigation, search, cart, main content, and footer UI. A single local dataset powers category listings, featured products, search results, and product-detail routes.
+
+Global cart behavior lives in `CartContext`; checkout form state and validation are isolated in `useCheckoutForm`. UI-specific state—including theme, drawer visibility, search terms, carousel position, gallery selection, and product quantity—stays close to the component that owns it.
 
 ## Project Structure
 
 ```text
 1.4-Electro/
-|-- .agents/                  # Project agent configuration
-|-- .git/                     # Git repository metadata
-|-- .gitignore
-|-- dist/                     # Production build output
-|-- eslint.config.js
-|-- index.html
-|-- node_modules/             # Installed dependencies
-|-- package-lock.json
-|-- package.json
-|-- public/                   # Static assets and web manifest files
-|-- README.md
-|-- screenshots/              # Project screenshots
-|-- src/
-|   |-- App.jsx
-|   |-- assets/
-|   |-- components/
-|   |   |-- checkout/
-|   |   |-- BrandStatement.jsx
-|   |   |-- CartDrawer.jsx
-|   |   |-- ErrorBoundary.jsx
-|   |   |-- FeaturesBar.jsx
-|   |   |-- Footer.jsx
-|   |   |-- HamburgerButton.jsx
-|   |   |-- Headline.jsx
-|   |   |-- HeroSection.jsx
-|   |   |-- Navbar.jsx
-|   |   |-- NavigationDrawer.jsx
-|   |   |-- ProductCard.jsx
-|   |   |-- ProductDetails.jsx
-|   |   |-- ProductGrid.jsx
-|   |   |-- ProductList.jsx
-|   |   |-- SearchDrawer.jsx
-|   |   |-- SearchResults.jsx
-|   |-- context/
-|   |-- data/
-|   |-- hooks/
-|   |-- index.css
-|   |-- layouts/
-|   |-- main.jsx
-|   |-- pages/
-|   |   |-- Checkout.jsx
-|   |   |-- Contact.jsx
-|   |   |-- Home.jsx
-|   |   |-- Laptops.jsx
-|   |   |-- Phones.jsx
-|   |   |-- ProductPage.jsx
-|   |   |-- Tablets.jsx
-|   |-- utils/
-|-- vercel.json               # SPA fallback rewrite
-`-- vite.config.js
+├── public/                  # Favicons, web manifest, and social preview image
+├── scripts/
+│   └── prepare-sites-build.mjs
+├── src/
+│   ├── assets/             # Logos, hero artwork, products, and screenshots
+│   ├── components/         # Shared storefront UI
+│   │   └── checkout/       # Checkout form and summary components
+│   ├── context/            # Cart context and provider
+│   ├── data/               # Product catalog and navigation data
+│   ├── hooks/              # Cart access and checkout form logic
+│   ├── layouts/            # Shared application shell
+│   ├── pages/              # Catalog, product, contact, and checkout pages
+│   ├── utils/              # Formatting helpers
+│   ├── App.jsx             # Routes and application-level behavior
+│   ├── index.css           # Tailwind import and global styles
+│   └── main.jsx            # React entry point
+├── eslint.config.js
+├── index.html
+├── package.json
+├── vercel.json             # SPA fallback rewrite
+└── vite.config.js
 ```
 
-## Installation
+## Getting Started
 
 ### Prerequisites
 
-- Node.js compatible with Vite 8 (Node.js 20.19+ or 22.12+)
+- Node.js 20.19+ or 22.12+
 - npm
 
-```bash
-git clone https://github.com/AHM2010/Electro.git
-cd Electro
-npm install
-npm run dev
-```
+### Installation
 
-Open the local URL printed by Vite, typically `http://localhost:5173`.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/AHM2010/Electro.git
+   cd Electro
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open the local URL printed by Vite, typically `http://localhost:5173`.
+
+No environment variables are required.
+
+### Production build
+
+```bash
+npm run build
+npm run preview
+```
 
 ## Available Scripts
 
-| Command           | Description                                                    |
-| ----------------- | -------------------------------------------------------------- |
-| `npm run dev`     | Starts the Vite development server with hot module replacement |
-| `npm run build`   | Creates an optimized production build in `dist/`               |
-| `npm run preview` | Serves the production build locally for verification           |
-| `npm run lint`    | Runs ESLint across the project                                 |
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server with hot module replacement |
+| `npm run build` | Create the optimized production build and Sites worker entry point |
+| `npm run preview` | Serve the production build locally for verification |
+| `npm run lint` | Run ESLint across the project |
 
 ## Usage
 
-1. Browse all products from **Home**, or select a category from the navigation.
-2. Use search to find a product by its name.
-3. Open a product to review its gallery, specifications, delivery estimate, and shipping policy.
-4. Select a quantity and add the product to the cart.
-5. Adjust or remove items in the cart drawer, then continue to checkout.
-6. Complete the validated demo form and select a delivery method to place a simulated order.
+1. Browse featured products or open a category from the main navigation.
+2. Search for a device by name, or open a product to view its gallery and specifications.
+3. Choose a quantity and add the product to the cart.
+4. Adjust quantities in the cart drawer and continue to checkout.
+5. Complete the validated demo form, choose a delivery method, and place the simulated order.
 
-Cart items and checkout form drafts remain available after a refresh because they are stored in the browser. Submitted orders are not sent to a server.
+Cart contents, checkout drafts, and theme preference remain available after a refresh because they are stored in the browser.
 
-## Responsive Design
+## Routes
 
-The interface uses mobile-first Tailwind breakpoints throughout. Navigation switches to a drawer on smaller screens, product grids adapt by viewport width, hero artwork is selected with responsive `<picture>` sources, and checkout changes from a stacked layout to a two-column form and sticky order summary on larger displays.
+| Route | Purpose |
+| --- | --- |
+| `/` | Landing page with hero, featured products, and brand highlights |
+| `/home` | Complete product catalog |
+| `/phones` | Phone catalog |
+| `/tablets` | Tablet catalog |
+| `/laptops` | Laptop catalog |
+| `/products/:slug` | Dynamic product details |
+| `/checkout` | Cart review and demo checkout |
+| `/contact` | Contact information and validated email handoff form |
 
-## Key Implemented Features
+## Performance and Quality
 
-- **Data-driven catalog:** A single local product dataset supplies category pages, featured products, search results, and dynamic detail routes.
-- **Cart calculations:** Memoized subtotal and item-count values update as quantities change; delivery fees are included in checkout totals.
-- **Validated demo checkout:** Custom hooks manage draft persistence, touched fields, conditional billing fields, card formatting, and inline errors.
-- **Product experience:** Lazy-loaded gallery imagery, formatted SAR prices, specifications, quantity controls, and dynamic delivery windows support informed browsing.
-- **SPA deployment:** Vercel rewrites all routes to `index.html`, preserving client-side routing on direct visits.
-
-## State Management
-
-Global cart state is managed with React Context through `CartProvider` and accessed with the `useCart` hook. Cart actions use memoized callbacks, while derived subtotal and item-count values use `useMemo`. The cart is synchronized to `localStorage`.
-
-Checkout form state is isolated in `useCheckoutForm`, which also persists the draft locally. Search terms, drawer visibility, carousel position, product quantity, tabs, and submission feedback remain local component state. No external state-management library is used.
-
-## Routing Structure
-
-| Route             | Purpose                                      |
-| ----------------- | -------------------------------------------- |
-| `/`               | Marketing landing page and featured products |
-| `/home`           | Complete product catalog                     |
-| `/phones`         | Phone catalog                                |
-| `/tablets`        | Tablet catalog                               |
-| `/laptops`        | Laptop catalog                               |
-| `/products/:slug` | Dynamic product details                      |
-| `/checkout`       | Cart review and demo checkout                |
-| `/contact`        | Validated contact form and contact details   |
-
-All routes render inside the shared `Layout`, which provides navigation, search, the cart drawer, main content, and footer. Route changes also update the document title and reset the page scroll position.
-
-## Performance and UX Improvements
-
-- Vite-powered development and optimized production builds
+- Vite-powered production bundling and route-compatible deployment rewrites
 - Lazy loading for noncritical product and gallery images
-- Responsive hero assets for mobile, tablet, and desktop viewports
-- Memoized cart actions, calculated totals, filtered search results, and checkout components
+- Responsive hero artwork and adaptive product grids
+- Memoized cart operations, totals, search results, and checkout sections
 - Persistent cart and checkout drafts for refresh resilience
-- Smooth scrolling, route scroll reset, dynamic page titles, and AOS transitions
-- Clear empty states, delivery estimates, formatted currency, and guarded quantity controls
+- Semantic landmarks, labels, fieldsets, legends, and live feedback regions
+- Accessible names for icon-only controls and keyboard-visible focus treatments
+- Dialog focus restoration, Escape-key handling, and guarded quantity controls
+- Top-level React error boundary for unexpected rendering failures
 
-## Accessibility Considerations
+## Current Limitations
 
-- Semantic landmarks, headings, lists, forms, fieldsets, legends, and labels
-- Descriptive image alternative text and labels for icon-only controls
-- `aria-current` for the active hero slide and `aria-pressed` for product tabs
-- Form errors connected with `aria-describedby`, `aria-invalid`, and live status regions
-- Keyboard-visible focus treatments on key interactive controls
-- Required-field indicators and disabled states where applicable
+- Catalog, prices, and availability are static local data
+- Checkout is simulated and does not process payments
+- No authentication, customer accounts, backend API, or database
+- No automated test suite is currently configured
+- Unknown routes do not yet have a dedicated not-found page
 
 ## Future Improvements
 
-- Connect the catalog, inventory, authentication, and order flow to a backend
-- Integrate a real payment provider instead of the simulated checkout
-- Add automated unit, integration, and end-to-end tests
-- Add a not-found route and route-level error handling
-- Add product filters, sorting, pagination, and richer search
-- Add deployed screenshots and the production demo URL
-- Review color contrast and complete automated and manual accessibility audits
+- Connect products, inventory, customers, and orders to a backend
+- Integrate a real payment provider and server-side order validation
+- Add filters, sorting, pagination, and richer search
+- Add unit, integration, accessibility, and end-to-end tests
+- Introduce authentication, saved addresses, and order history
+- Add a dedicated not-found route and route-level error handling
+
+## Contributing
+
+Contributions and suggestions are welcome:
+
+1. Fork the repository.
+2. Create a focused feature branch.
+3. Make and verify your changes with `npm run lint` and `npm run build`.
+4. Open a pull request describing the problem and solution.
 
 ## Author
 
 **Ahmed Ashraf**
 
 - GitHub: [@AHM2010](https://github.com/AHM2010)
-- Repository: [AHM2010/electro](https://github.com/AHM2010/Electro)
+- Repository: [AHM2010/Electro](https://github.com/AHM2010/Electro)
 
 ## License
 
-No license file is currently included in this repository. Unless a license is added, the source remains under the author's default copyright.
+No license file is currently included. Unless a license is added, the source code remains under the author's default copyright.

@@ -12,6 +12,7 @@ function CheckoutSection({
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
+      data-aos="fade-up"
       className={`surface-card p-4 sm:p-6 ${className}`}
     >
       <div className="mb-4 flex items-start gap-3 border-b border-slate-100 pb-3 dark:border-slate-800 sm:mb-5 sm:pb-4">

@@ -31,36 +31,40 @@ function ScrollToTop() {
   return null;
 }
 
+const DEFAULT_TITLE = "Electro — Premium Technology";
+
+const routeTitles = {
+  "/": DEFAULT_TITLE,
+  "/home": "All Products | Electro",
+  "/phones": "Phones | Electro",
+  "/tablets": "Tablets | Electro",
+  "/laptops": "Laptops | Electro",
+  "/contact": "Contact | Electro",
+  "/checkout": "Checkout | Electro",
+};
+
 function TitleManager() {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const path = location.pathname;
-    let title = "Electro";
+    let title = routeTitles[pathname] ?? "Page Not Found | Electro";
 
-    if (path === "/home") {
-      title = "Home - Electro";
-    } else if (path === "/phones") {
-      title = "Phones - Electro";
-    } else if (path === "/tablets") {
-      title = "Tablets - Electro";
-    } else if (path === "/laptops") {
-      title = "Laptops - Electro";
-    } else if (path === "/contact") {
-      title = "Contact - Electro";
-    } else if (path.startsWith("/products/")) {
-      const slug = decodeURIComponent(path.replace("/products/", ""));
+    if (pathname.startsWith("/products/")) {
+      const slug = decodeURIComponent(pathname.replace("/products/", ""));
       const product = allProducts.find((item) => item.slug === slug);
-      title = product ? `${product.title} - Electro` : "Product - Electro";
-    } else if (path === "/checkout") {
-      title = "Checkout - Electro";
-    } else if (path === "/") {
-      title = "Electro";
+      title = product
+        ? `${product.title} | Electro`
+        : "Product Not Found | Electro";
     }
 
     document.title = title;
-    AOS.refresh();
-  }, [location]);
+
+    const animationFrame = window.requestAnimationFrame(() => {
+      AOS.refreshHard();
+    });
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [pathname]);
 
   return null;
 }
@@ -79,7 +83,12 @@ function LandingPage() {
 
 function App() {
   useEffect(() => {
-    AOS.init({ once: true, duration: 700, easing: "ease-out-cubic" });
+    AOS.init({
+      once: true,
+      duration: 650,
+      easing: "ease-out-cubic",
+      offset: 72,
+    });
   }, []);
 
   return (

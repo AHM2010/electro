@@ -1,24 +1,27 @@
 import { memo } from "react";
 import { Truck, Zap } from "lucide-react";
+import {
+  formatCurrency,
+  FREE_SHIPPING_THRESHOLD,
+  getDeliveryFee,
+} from "../../utils/formatters";
 
 const deliveryOptions = [
   {
     id: "standard",
     label: "Standard delivery",
     description: "Delivered in 3–7 business days",
-    price: "Free",
     icon: Truck,
   },
   {
     id: "express",
     label: "Express delivery",
     description: "Delivered in 1–2 business days",
-    price: "30 SAR",
     icon: Zap,
   },
 ];
 
-function DeliveryMethodSelector({ value, onChange }) {
+function DeliveryMethodSelector({ value, onChange, subtotal = 0 }) {
   return (
     <fieldset>
       <legend className="sr-only">Choose a delivery method</legend>
@@ -27,6 +30,7 @@ function DeliveryMethodSelector({ value, onChange }) {
         {deliveryOptions.map((option) => {
           const isSelected = value === option.id;
           const OptionIcon = option.icon;
+          const deliveryFee = getDeliveryFee(subtotal, option.id);
 
           return (
             <label
@@ -63,7 +67,7 @@ function DeliveryMethodSelector({ value, onChange }) {
                     {option.label}
                   </span>
                   <span className="shrink-0 text-sm font-semibold text-blue-600">
-                    {option.price}
+                    {deliveryFee === 0 ? "Free" : formatCurrency(deliveryFee)}
                   </span>
                 </span>
                 <span className="mt-1 block text-sm text-gray-500">
@@ -74,6 +78,11 @@ function DeliveryMethodSelector({ value, onChange }) {
           );
         })}
       </div>
+      <p className="mt-3 text-xs leading-relaxed text-gray-500">
+        Standard delivery is free when the merchandise subtotal exceeds{" "}
+        {formatCurrency(FREE_SHIPPING_THRESHOLD)}; otherwise, a 30 SAR shipping
+        fee applies. Express delivery adds a further 30 SAR surcharge.
+      </p>
     </fieldset>
   );
 }

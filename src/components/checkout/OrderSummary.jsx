@@ -7,8 +7,7 @@ import {
 } from "../../utils/formatters";
 
 function OrderSummaryItem({ item, compact = false }) {
-  const lineTotal =
-    (Number(item.price) || 0) * (Number(item.quantity) || 0);
+  const lineTotal = (Number(item.price) || 0) * (Number(item.quantity) || 0);
 
   return (
     <li className={`flex items-center ${compact ? "gap-2" : "gap-3"}`}>
@@ -20,11 +19,19 @@ function OrderSummaryItem({ item, compact = false }) {
       />
 
       <div className="min-w-0 flex-1">
-        <p className={`${compact ? "line-clamp-2 text-sm leading-snug" : "truncate"} font-medium text-slate-900 dark:text-white`}>{item.title}</p>
-        <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Qty: {item.quantity}</p>
+        <p
+          className={`${compact ? "line-clamp-2 text-sm leading-snug" : "truncate"} font-medium text-slate-900 dark:text-white`}
+        >
+          {item.title}
+        </p>
+        <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+          Qty: {item.quantity}
+        </p>
       </div>
 
-      <p className={`${compact ? "text-xs" : "text-sm"} shrink-0 font-semibold text-gray-900`}>
+      <p
+        className={`${compact ? "text-xs" : "text-sm"} shrink-0 font-semibold text-gray-900`}
+      >
         {formatCurrency(lineTotal)}
       </p>
     </li>
@@ -41,8 +48,8 @@ function OrderSummary({
 }) {
   const isEmpty = cartItems.length === 0;
   const deliveryFee = useMemo(
-    () => getDeliveryFee(deliveryMethod),
-    [deliveryMethod],
+    () => getDeliveryFee(subtotal, deliveryMethod),
+    [subtotal, deliveryMethod],
   );
   const total = useMemo(
     () => getOrderTotal(subtotal, deliveryMethod),
@@ -84,7 +91,9 @@ function OrderSummary({
           )}
         </div>
 
-        <div className={`${compact ? "mt-4 pt-3" : "mt-6 pt-4"} space-y-2 border-t border-slate-100 dark:border-slate-800`}>
+        <div
+          className={`${compact ? "mt-4 pt-3" : "mt-6 pt-4"} space-y-2 border-t border-slate-100 dark:border-slate-800`}
+        >
           <div className="flex justify-between text-sm text-slate-600 dark:text-slate-300">
             <span>Subtotal</span>
             <span>{formatCurrency(subtotal)}</span>
@@ -102,6 +111,20 @@ function OrderSummary({
               {deliveryFee === 0 ? "Free" : formatCurrency(deliveryFee)}
             </span>
           </div>
+
+          {deliveryMethod === "standard" && (
+            <p className="text-xs leading-relaxed text-gray-500">
+              Free standard delivery applies to merchandise subtotals over
+              7,000 SAR.
+            </p>
+          )}
+
+          {deliveryMethod === "express" && (
+            <p className="text-xs leading-relaxed text-gray-500">
+              Express delivery includes a 30 SAR surcharge in addition to any
+              standard shipping fee.
+            </p>
+          )}
 
           <div className="flex justify-between border-t border-slate-100 pt-3 text-base font-bold text-slate-900 dark:border-slate-800 dark:text-white">
             <span>Total</span>

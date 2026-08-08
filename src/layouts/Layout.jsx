@@ -62,9 +62,7 @@ export default function Layout({ children }) {
       )}
 
       <CartDrawer isOpen={isCartOpen} closeCart={closeCart} />
-      <main className="min-h-screen pt-18 lg:pt-20">
-        {children}
-      </main>
+      <main className="min-h-screen pt-18 lg:pt-20">{children}</main>
       <Footer />
     </>
   );

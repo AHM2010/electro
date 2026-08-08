@@ -42,14 +42,38 @@ export default function Navbar({ openCart, openSearch }) {
         }`}
       >
         <div className="site-container flex h-18 items-center justify-between gap-4 lg:h-20">
-          <Link to="/" className="flex shrink-0 items-center" aria-label="Electro home">
+          <Link
+            to="/"
+            className="flex shrink-0 items-center"
+            aria-label="Electro home"
+          >
             <span className="sm:hidden">
-              <img src={MiniLogoLight} alt="Electro" className="h-10 w-10 dark:hidden" loading="eager" />
-              <img src={MiniLogoDark} alt="Electro" className="hidden h-10 w-10 dark:block" loading="eager" />
+              <img
+                src={MiniLogoLight}
+                alt="Electro"
+                className="h-10 w-10 dark:hidden"
+                loading="eager"
+              />
+              <img
+                src={MiniLogoDark}
+                alt="Electro"
+                className="hidden h-10 w-10 dark:block"
+                loading="eager"
+              />
             </span>
             <span className="hidden sm:block">
-              <img src={WideLogoLight} alt="Electro" className="h-11 w-auto dark:hidden" loading="eager" />
-              <img src={WideLogoDark} alt="Electro" className="hidden h-11 w-auto dark:block" loading="eager" />
+              <img
+                src={WideLogoLight}
+                alt="Electro"
+                className="h-11 w-auto dark:hidden"
+                loading="eager"
+              />
+              <img
+                src={WideLogoDark}
+                alt="Electro"
+                className="hidden h-11 w-auto dark:block"
+                loading="eager"
+              />
             </span>
           </Link>
 
@@ -73,11 +97,23 @@ export default function Navbar({ openCart, openSearch }) {
           </div>
 
           <div className="flex items-center gap-1">
-            <button type="button" onClick={openSearch} className="icon-button" aria-label="Search products">
+            <button
+              type="button"
+              onClick={openSearch}
+              className="icon-button"
+              aria-label="Search products"
+            >
               <Search className="h-5 w-5" />
             </button>
-            <span className="hidden min-[375px]:inline-flex"><ThemeToggle /></span>
-            <button type="button" onClick={openCart} className="icon-button relative" aria-label={`Open cart with ${totalItems} items`}>
+            <span className="hidden min-[375px]:inline-flex">
+              <ThemeToggle />
+            </span>
+            <button
+              type="button"
+              onClick={openCart}
+              className="icon-button relative"
+              aria-label={`Open cart with ${totalItems} items`}
+            >
               <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (
                 <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white ring-2 ring-white dark:ring-slate-950">
@@ -88,13 +124,20 @@ export default function Navbar({ openCart, openSearch }) {
             <HamburgerButton
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((open) => !open)}
-              ariaLabel={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              ariaLabel={
+                isMobileMenuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
             />
           </div>
         </div>
       </nav>
 
-      <NavigationDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <NavigationDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
     </header>
   );
 }
