@@ -1,19 +1,13 @@
 import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
-import laptopHero1 from "../assets/images/laptop-hero-1-phones.png";
-import laptopHero2 from "../assets/images/laptop-hero-2-tablets.png";
-import laptopHero3 from "../assets/images/laptop-hero-3-laptops.png";
-import tabletHero1 from "../assets/images/tablet-hero-1-phones.png";
-import tabletHero2 from "../assets/images/tablet-hero-2-laptops.png";
-import tabletHero3 from "../assets/images/tablet-hero-3-tablets.png";
-import phoneHero1 from "../assets/images/phone-hero-1-phones.png";
-import phoneHero2 from "../assets/images/phone-hero-2-laptops.png";
-import phoneHero3 from "../assets/images/phone-hero-3-tablets.png";
+import smartphonesHero from "../assets/hero/electro-slider-smartphones.webp";
+import tabletsHero from "../assets/hero/electro-slider-tablets.webp";
+import laptopsHero from "../assets/hero/electro-slider-laptops.webp";
 
 const slides = [
-  { label: "Smartphones", title: "Flagship power in your pocket", copy: "Discover advanced cameras, brilliant displays, and all-day performance.", phone: phoneHero1, tablet: tabletHero1, laptop: laptopHero1 },
-  { label: "Tablets", title: "Create, stream, and go further", copy: "Versatile tablets built for focused work and immersive entertainment.", phone: phoneHero2, tablet: tabletHero2, laptop: laptopHero2 },
-  { label: "Laptops", title: "Serious performance, beautifully portable", copy: "Premium laptops for ambitious work, creativity, and everything between.", phone: phoneHero3, tablet: tabletHero3, laptop: laptopHero3 },
+  { label: "Smartphones", title: "Flagship power in your pocket", copy: "Discover advanced cameras, brilliant displays, and all-day performance.", image: smartphonesHero },
+  { label: "Tablets", title: "Create, stream, and go further", copy: "Versatile tablets built for focused work and immersive entertainment.", image: tabletsHero },
+  { label: "Laptops", title: "Serious performance, beautifully portable", copy: "Premium laptops for ambitious work, creativity, and everything between.", image: laptopsHero },
 ];
 
 export default function HeroSection() {
@@ -31,16 +25,14 @@ export default function HeroSection() {
       <div className="relative min-h-[34rem] overflow-hidden sm:min-h-[38rem] lg:min-h-[min(42rem,calc(100vh-5rem))]">
         <div className="absolute inset-0 flex h-full transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentImage * 100}%)` }}>
           {slides.map((slide, index) => (
-            <picture key={slide.label} className="h-full w-full shrink-0">
-              <source media="(min-width:1024px)" srcSet={slide.laptop} />
-              <source media="(min-width:768px)" srcSet={slide.tablet} />
-              <img src={slide.phone} alt="" className="h-full w-full object-cover object-center" loading={index === 0 ? "eager" : "lazy"} />
-            </picture>
+            <div key={slide.label} className="h-full w-full shrink-0">
+              <img src={slide.image} alt="" className="h-full w-full object-cover object-center" loading={index === 0 ? "eager" : "lazy"} />
+            </div>
           ))}
         </div>
-        <div className="absolute inset-0 bg-slate-950/90 lg:bg-gradient-to-r lg:from-slate-950 lg:via-slate-950/85 lg:to-slate-950/35" />
+        <div className="hero-visual-overlay absolute inset-0" />
         <div className="site-container relative flex min-h-[34rem] items-center py-16 sm:min-h-[38rem] lg:min-h-[min(42rem,calc(100vh-5rem))]">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl lg:max-w-[48%] xl:max-w-[46%]">
             <p className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-300"><ShieldCheck className="h-4 w-4" /> Trusted premium technology</p>
             <h1 className="title text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">{activeSlide.title}</h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">{activeSlide.copy}</p>

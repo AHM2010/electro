@@ -65,6 +65,23 @@ select {
   background: color-mix(in srgb, var(--brand) 22%, transparent);
 }
 
+.hero-visual-overlay {
+  background: rgb(2 6 23 / 0.92);
+}
+
+@media (min-width: 1024px) {
+  .hero-visual-overlay {
+    background: linear-gradient(
+      90deg,
+      #020617 0%,
+      #020617 44%,
+      rgb(2 6 23 / 0.96) 48%,
+      rgb(2 6 23 / 0.35) 55%,
+      transparent 62%
+    );
+  }
+}
+
 @layer components {
   .site-container {
     width: min(100% - 2rem, 80rem);
