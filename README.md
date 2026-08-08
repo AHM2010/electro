@@ -17,6 +17,8 @@
   </p>
 </div>
 
+![Electro storefront hero](src/assets/readme/electro-cover.png)
+
 ## Overview
 
 Electro is a front-end e-commerce experience for browsing phones, tablets, and laptops. It combines a data-driven product catalog with responsive navigation, product search, detailed product pages, a persistent shopping cart, and a validated checkout flow.
@@ -43,13 +45,19 @@ Explore the deployed application at **[electro-one.vercel.app](https://electro-o
 
 ## Screenshots
 
-### Storefront
+### Product discovery
 
-![Electro storefront](src/assets/images/home-page.png)
+![Electro featured product catalog](src/assets/readme/storefront-desktop.png)
 
-| Product details | Checkout |
+### Shopping experience
+
+| Product details | Cart management |
 | --- | --- |
-| ![Electro product details page](src/assets/images/product-details-page.png) | ![Electro checkout page](src/assets/images/checkout-page.png) |
+| ![Electro product details page](src/assets/readme/product-details.png) | ![Electro cart drawer](src/assets/readme/cart-drawer.png) |
+
+### Checkout
+
+![Electro checkout page](src/assets/readme/checkout.png)
 
 ## Features
 
