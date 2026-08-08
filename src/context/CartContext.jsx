@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import CartContext from "./cartContextCore";
+import { allProducts } from "../data/productsData";
+
+const availableProductIds = new Set(
+  allProducts.filter((product) => product.inStock !== false).map((product) => product.id),
+);
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(() => {
@@ -8,7 +13,10 @@ export function CartProvider({ children }) {
       const parsedCart = savedCart ? JSON.parse(savedCart) : [];
 
       return Array.isArray(parsedCart)
-        ? parsedCart.filter((item) => item?.id && item?.quantity > 0)
+        ? parsedCart.filter(
+            (item) =>
+              item?.id && item?.quantity > 0 && availableProductIds.has(item.id),
+          )
         : [];
     } catch {
       localStorage.removeItem("cartItems");
@@ -25,7 +33,7 @@ export function CartProvider({ children }) {
   }, [cartItems]);
 
   const addToCart = useCallback((product, quantity = 1) => {
-    if (!product?.id) return;
+    if (!product?.id || product.inStock === false) return;
 
     const quantityToAdd = Math.max(1, Number(quantity) || 1);
 

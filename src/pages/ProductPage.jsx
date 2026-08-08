@@ -1,6 +1,7 @@
 import {
   Check,
   Minus,
+  PackageX,
   Plus,
   ShieldCheck,
   ShoppingCart,
@@ -29,8 +30,11 @@ export default function ProductPage({
   const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
   const specEntries = useMemo(() => Object.entries(specs || {}), [specs]);
+  const isInStock = product?.inStock !== false;
 
   const handleAdd = () => {
+    if (!isInStock) return;
+
     addToCart(product, quantity);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1800);
@@ -95,8 +99,10 @@ export default function ProductPage({
             className="h-fit lg:sticky lg:top-26"
           >
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">
-                In stock
+              <span
+                className={`rounded-full px-2.5 py-1 text-xs font-bold ${isInStock ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300" : "bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-300"}`}
+              >
+                {isInStock ? "In stock" : "Out of stock"}
               </span>
               <span className="flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
                 <Star className="h-4 w-4 fill-amber-400 text-amber-400" /> 4.8{" "}
@@ -118,7 +124,7 @@ export default function ProductPage({
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  disabled={quantity === 1}
+                  disabled={!isInStock || quantity === 1}
                   className="icon-button h-10 w-10 disabled:opacity-35"
                   aria-label="Decrease quantity"
                 >
@@ -128,7 +134,8 @@ export default function ProductPage({
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="icon-button h-10 w-10"
+                  disabled={!isInStock}
+                  className="icon-button h-10 w-10 disabled:opacity-35"
                   aria-label="Increase quantity"
                 >
                   <Plus className="h-4 w-4" />
@@ -137,23 +144,38 @@ export default function ProductPage({
               <button
                 type="button"
                 onClick={handleAdd}
-                className="btn-primary flex-1 text-base"
+                disabled={!isInStock}
+                className="btn-primary flex-1 text-base disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600 disabled:shadow-none dark:disabled:bg-slate-700 dark:disabled:text-slate-300"
                 aria-live="polite"
               >
-                {added ? (
+                {!isInStock ? (
+                  <PackageX className="h-5 w-5" />
+                ) : added ? (
                   <Check className="h-5 w-5" />
                 ) : (
                   <ShoppingCart className="h-5 w-5" />
                 )}
-                {added ? "Added to cart" : "Add to cart"}
+                {!isInStock
+                  ? "Out of stock"
+                  : added
+                    ? "Added to cart"
+                    : "Add to cart"}
               </button>
             </div>
 
             <div className="mt-6 grid gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm dark:border-slate-800 dark:bg-slate-900">
               <p className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                <Truck className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+                {isInStock ? (
+                  <Truck className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+                ) : (
+                  <PackageX className="h-5 w-5 text-red-600 dark:text-red-300" />
+                )}
                 <span>
-                  <strong>Estimated delivery:</strong> {formatDeliveryWindow()}
+                  {isInStock ? (
+                    <><strong>Estimated delivery:</strong> {formatDeliveryWindow()}</>
+                  ) : (
+                    <strong>Currently unavailable for delivery</strong>
+                  )}
                 </span>
               </p>
               <p className="flex items-center gap-3 text-slate-700 dark:text-slate-300">

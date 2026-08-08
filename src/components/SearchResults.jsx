@@ -77,6 +77,9 @@ function SearchResults({
                       <span className="mt-1 block text-gray-600 text-sm font-semibold">
                         {formatCurrency(product.price)}
                       </span>
+                      <span className={`mt-1 block text-xs font-semibold ${product.inStock === false ? "text-red-600 dark:text-red-300" : "text-emerald-600 dark:text-emerald-300"}`}>
+                        {product.inStock === false ? "Out of stock" : "In stock"}
+                      </span>
                     </span>
                   </button>
                 ))}

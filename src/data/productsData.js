@@ -85,6 +85,7 @@ Perfect for fast browsing, vibrant media, and everyday productivity.`,
       id: 4,
       slug: "oppo-find-x8-pro",
       title: "Oppo Find X8 Pro",
+      inStock: false,
       price: 3499,
       images: [
         new URL("../assets/images/oppo-find-x8-pro.png", import.meta.url).href,
@@ -187,6 +188,7 @@ Balanced performance and a clean design for reliable daily productivity.`,
       id: 8,
       slug: "xiaomi-pad-5-pearl-white",
       title: "Xiaomi Pad 5 Pearl White",
+      inStock: false,
       price: 2999,
       images: [
         new URL(
@@ -270,6 +272,7 @@ Delivers strong performance and elegant styling for work and play`,
       id: 11,
       slug: "lenovo-thinkpad-x9-aura-edition",
       title: "Lenovo ThinkPad X9 Aura Edition",
+      inStock: false,
       price: 5999,
       images: [
         new URL(

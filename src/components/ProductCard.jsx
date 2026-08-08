@@ -1,4 +1,4 @@
-import { Check, ShoppingCart, Star } from "lucide-react";
+import { Check, PackageX, ShoppingCart, Star } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
@@ -29,8 +29,11 @@ function ProductCard(product) {
   const mainImage =
     Array.isArray(images) && images.length > 0 ? images[0] : image;
   const productPath = slug ? `/products/${slug}` : "/home";
+  const isInStock = product.inStock !== false;
 
   const handleAdd = () => {
+    if (!isInStock) return;
+
     addToCart(product, 1);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1600);
@@ -53,8 +56,10 @@ function ProductCard(product) {
         ) : (
           <div className="h-full w-full rounded-xl bg-slate-100 dark:bg-slate-800" />
         )}
-        <span className="absolute left-3 top-3 rounded-full border border-emerald-200 bg-emerald-50/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700 backdrop-blur dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-300">
-          In stock
+        <span
+          className={`absolute left-3 top-3 rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide backdrop-blur ${isInStock ? "border-emerald-200 bg-emerald-50/95 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-500/10 dark:text-emerald-300" : "border-red-200 bg-red-50/95 text-red-700 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-300"}`}
+        >
+          {isInStock ? "In stock" : "Out of stock"}
         </span>
       </Link>
 
@@ -86,15 +91,18 @@ function ProductCard(product) {
           <button
             type="button"
             onClick={handleAdd}
-            className="btn-primary min-h-11 px-3 py-2"
+            disabled={!isInStock}
+            className="btn-primary min-h-11 px-3 py-2 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600 disabled:shadow-none dark:disabled:bg-slate-700 dark:disabled:text-slate-300"
             aria-live="polite"
           >
-            {added ? (
+            {!isInStock ? (
+              <PackageX className="h-4 w-4" />
+            ) : added ? (
               <Check className="h-4 w-4" />
             ) : (
               <ShoppingCart className="h-4 w-4" />
             )}
-            {added ? "Added" : "Add to cart"}
+            {!isInStock ? "Out of stock" : added ? "Added" : "Add to cart"}
           </button>
           <Link
             to={productPath}

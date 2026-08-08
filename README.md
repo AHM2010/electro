@@ -67,6 +67,7 @@ Explore the deployed application at **[electro-one.vercel.app](https://electro-o
 - Featured-product section and complete catalog view
 - Dedicated phone, tablet, and laptop category pages
 - Search overlay with matching product results
+- Product availability states with guarded cart actions
 - Dynamic product routes based on readable slugs
 
 ### Product experience
