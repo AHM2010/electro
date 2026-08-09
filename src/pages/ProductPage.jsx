@@ -27,6 +27,8 @@ export default function ProductPage({
   description = "No description is available for this product.",
   images = [],
   specs = {},
+  rating = 4.7,
+  reviewCount = 0,
 }) {
   const safeImages = useMemo(
     () => (Array.isArray(images) ? images.filter(Boolean) : []),
@@ -162,8 +164,11 @@ export default function ProductPage({
                 {isInStock ? "In stock" : "Out of stock"}
               </span>
               <span className="flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                <Star className="h-4 w-4 fill-amber-400 text-amber-400" /> 4.8{" "}
-                <span className="font-normal text-slate-400">(24 reviews)</span>
+                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />{" "}
+                {rating}
+                <span className="ml-1 font-normal text-slate-400">
+                  ({reviewCount} {reviewCount === 1 ? "review" : "reviews"})
+                </span>
               </span>
             </div>
             <h1 className="title mt-4 text-3xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
@@ -229,7 +234,10 @@ export default function ProductPage({
                 )}
                 <span>
                   {isInStock ? (
-                    <><strong>Estimated delivery:</strong> {formatDeliveryWindow()}</>
+                    <>
+                      <strong>Estimated delivery:</strong>{" "}
+                      {formatDeliveryWindow()}
+                    </>
                   ) : (
                     <strong>Currently unavailable for delivery</strong>
                   )}
@@ -302,7 +310,7 @@ export default function ProductPage({
         activeImage &&
         createPortal(
           <div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-sm sm:p-8"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-sm sm:p-8"
             role="dialog"
             aria-modal="true"
             aria-label={`${title} image viewer`}

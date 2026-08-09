@@ -1,3 +1,12 @@
+const getRandomRating = () => {
+  const min = 3.5;
+  const max = 5.0;
+  const rating = Math.random() * (max - min) + min;
+  return +(Math.round(rating * 10) / 10).toFixed(1);
+};
+
+const getRandomReviewCount = () => Math.floor(Math.random() * 90) + 40;
+
 const products = {
   phones: [
     {
@@ -5,6 +14,8 @@ const products = {
       slug: "iphone-17-pro",
       title: "iPhone 17 Pro",
       price: 4999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/iphone_17_pro_max_white.webp",
@@ -34,6 +45,8 @@ Packed with advanced camera tech and all-day battery life for every moment.`,
       slug: "samsung-galaxy-s25-ultra",
       title: "Samsung Galaxy S25 Ultra",
       price: 3999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/Samsung-Galaxy-S25-Ultra.avif",
@@ -63,6 +76,8 @@ Designed for smooth multitasking and immersive mobile experiences.`,
       slug: "honor-magic7-pro",
       title: "Honor Magic7 Pro",
       price: 2999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL("../assets/images/Honor-Magic-7-Pro.webp", import.meta.url)
           .href,
@@ -87,6 +102,8 @@ Perfect for fast browsing, vibrant media, and everyday productivity.`,
       title: "Oppo Find X8 Pro",
       inStock: false,
       price: 3499,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL("../assets/images/oppo-find-x8-pro.png", import.meta.url).href,
         new URL("../assets/images/oppo-find-x8-pro-2.jpg", import.meta.url)
@@ -111,6 +128,8 @@ Engineered for smooth performance, crisp photos, and modern style.`,
       slug: "samsung-galaxy-tab-s10-ultra",
       title: "Samsung Galaxy Tab S10 Ultra",
       price: 4599,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/Samsung-Galaxy-Tab-S10-Ultra.png",
@@ -140,6 +159,8 @@ Features a vivid screen and responsive performance for every task.`,
       slug: "ipad-pro-m4",
       title: "iPad Pro M4",
       price: 5999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL("../assets/images/ipad-pro-m4.webp", import.meta.url).href,
         new URL("../assets/images/ipad-pro-m4-2.webp", import.meta.url).href,
@@ -160,6 +181,8 @@ Ideal for work, art, and immersive streaming in a premium package.`,
       slug: "lenovo-idea-tab-k11-gen2",
       title: "Lenovo Idea Tab K11 Gen2",
       price: 3499,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/Lenovo-Idea-Tab-K11-Gen2.webp",
@@ -190,6 +213,8 @@ Balanced performance and a clean design for reliable daily productivity.`,
       title: "Xiaomi Pad 5 Pearl White",
       inStock: false,
       price: 2999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/Xiaomi-Pad-5-Pearl-White.jpg",
@@ -221,6 +246,8 @@ Offers a smooth experience for streaming, reading, and light multitasking.`,
       slug: "macbook-pro-retina-14-inch",
       title: "MacBook Pro Retina 14-inch",
       price: 7999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/MacBook-Pro-Retina-14-Inch.jpg",
@@ -250,6 +277,8 @@ Built for creative workflows, fast apps, and premium portability.`,
       slug: "hp-spectre-x360-14-inch",
       title: "HP Spectre x360 14-inch",
       price: 6999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL("../assets/images/hp-spectre-x360-black.jpg", import.meta.url)
           .href,
@@ -274,6 +303,8 @@ Delivers strong performance and elegant styling for work and play`,
       title: "Lenovo ThinkPad X9 Aura Edition",
       inStock: false,
       price: 5999,
+      rating: getRandomRating(),
+      reviewCount: getRandomReviewCount(),
       images: [
         new URL(
           "../assets/images/lenovo-thinkPad-x9-aura-edition.webp",

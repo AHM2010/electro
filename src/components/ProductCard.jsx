@@ -7,13 +7,6 @@ import { formatCurrency } from "../utils/formatters";
 const getCategory = (id) =>
   id <= 4 ? "Smartphone" : id <= 8 ? "Tablet" : "Laptop";
 
-const getRandomRating = () => {
-  const min = 3.5;
-  const max = 5.0;
-  const rating = Math.random() * (max - min) + min;
-  return +(Math.round(rating * 10) / 10).toFixed(1);
-};
-
 function ProductCard(product) {
   const {
     images = [],
@@ -22,10 +15,10 @@ function ProductCard(product) {
     price = 0,
     slug,
     id,
+    rating = 4.7,
   } = product;
   const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
-  const rating = useState(() => getRandomRating())[0];
   const mainImage =
     Array.isArray(images) && images.length > 0 ? images[0] : image;
   const productPath = slug ? `/products/${slug}` : "/home";

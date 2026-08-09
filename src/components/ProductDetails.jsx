@@ -25,6 +25,8 @@ export default function ProductDetails() {
       images={product.images}
       description={product.description}
       specs={product.specs}
+      rating={product.rating}
+      reviewCount={product.reviewCount}
     />
   );
 }
