@@ -335,7 +335,7 @@ export default function ProductPage({
                 <button
                   type="button"
                   onClick={showPreviousImage}
-                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white sm:left-6 sm:h-12 sm:w-12"
+                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/75 text-white shadow-lg ring-1 ring-white/70 backdrop-blur-sm transition hover:bg-slate-950/90 focus:outline-none focus:ring-2 focus:ring-white sm:left-6 sm:h-12 sm:w-12"
                   aria-label="View previous image"
                 >
                   <ChevronLeft className="h-7 w-7" aria-hidden="true" />
@@ -343,7 +343,7 @@ export default function ProductPage({
                 <button
                   type="button"
                   onClick={showNextImage}
-                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white sm:right-6 sm:h-12 sm:w-12"
+                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/75 text-white shadow-lg ring-1 ring-white/70 backdrop-blur-sm transition hover:bg-slate-950/90 focus:outline-none focus:ring-2 focus:ring-white sm:right-6 sm:h-12 sm:w-12"
                   aria-label="View next image"
                 >
                   <ChevronRight className="h-7 w-7" aria-hidden="true" />
