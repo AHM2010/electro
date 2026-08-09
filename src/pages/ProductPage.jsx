@@ -1,5 +1,8 @@
 import {
   Check,
+  ChevronLeft,
+  ChevronRight,
+  Expand,
   Minus,
   PackageX,
   Plus,
@@ -7,8 +10,10 @@ import {
   ShoppingCart,
   Star,
   Truck,
+  X,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useCart } from "../hooks/useCart";
 import { formatCurrency, formatDeliveryWindow } from "../utils/formatters";
 
@@ -23,14 +28,56 @@ export default function ProductPage({
   images = [],
   specs = {},
 }) {
-  const safeImages = Array.isArray(images) ? images.filter(Boolean) : [];
+  const safeImages = useMemo(
+    () => (Array.isArray(images) ? images.filter(Boolean) : []),
+    [images],
+  );
   const [activeImage, setActiveImage] = useState(safeImages[0]);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [added, setAdded] = useState(false);
+  const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
+  const closeViewerButtonRef = useRef(null);
   const { addToCart } = useCart();
   const specEntries = useMemo(() => Object.entries(specs || {}), [specs]);
   const isInStock = product?.inStock !== false;
+  const activeImageIndex = Math.max(0, safeImages.indexOf(activeImage));
+
+  const showPreviousImage = useCallback(() => {
+    const previousIndex =
+      (activeImageIndex - 1 + safeImages.length) % safeImages.length;
+    setActiveImage(safeImages[previousIndex]);
+  }, [activeImageIndex, safeImages]);
+
+  const showNextImage = useCallback(() => {
+    const nextIndex = (activeImageIndex + 1) % safeImages.length;
+    setActiveImage(safeImages[nextIndex]);
+  }, [activeImageIndex, safeImages]);
+
+  useEffect(() => {
+    if (!isImageViewerOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeViewerButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsImageViewerOpen(false);
+      if (safeImages.length > 1 && event.key === "ArrowLeft") {
+        showPreviousImage();
+      }
+      if (safeImages.length > 1 && event.key === "ArrowRight") {
+        showNextImage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isImageViewerOpen, safeImages.length, showNextImage, showPreviousImage]);
 
   const handleAdd = () => {
     if (!isInStock) return;
@@ -79,14 +126,24 @@ export default function ProductPage({
                 </button>
               ))}
             </div>
-            <div className="order-1 flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 sm:order-2 lg:p-8">
+            <div className="group relative order-1 flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 sm:order-2 lg:p-8">
               {activeImage ? (
-                <img
-                  src={activeImage}
-                  alt={title}
-                  className="h-full w-full object-contain"
-                  loading="eager"
-                />
+                <button
+                  type="button"
+                  onClick={() => setIsImageViewerOpen(true)}
+                  className="flex h-full w-full cursor-zoom-in items-center justify-center"
+                  aria-label={`View ${title} image ${activeImageIndex + 1} fullscreen`}
+                >
+                  <img
+                    src={activeImage}
+                    alt={title}
+                    className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.02]"
+                    loading="eager"
+                  />
+                  <span className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-slate-950/70 text-white shadow-lg backdrop-blur-sm transition group-hover:bg-blue-600 sm:right-4 sm:top-4">
+                    <Expand className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                </button>
               ) : (
                 <div className="h-full w-full bg-slate-100 dark:bg-slate-800" />
               )}
@@ -240,6 +297,67 @@ export default function ProductPage({
           </div>
         </div>
       </div>
+
+      {isImageViewerOpen &&
+        activeImage &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-sm sm:p-8"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${title} image viewer`}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setIsImageViewerOpen(false);
+              }
+            }}
+          >
+            <button
+              ref={closeViewerButtonRef}
+              type="button"
+              onClick={() => setIsImageViewerOpen(false)}
+              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white sm:right-6 sm:top-6"
+              aria-label="Close fullscreen image"
+            >
+              <X className="h-6 w-6" aria-hidden="true" />
+            </button>
+
+            {safeImages.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={showPreviousImage}
+                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white sm:left-6 sm:h-12 sm:w-12"
+                  aria-label="View previous image"
+                >
+                  <ChevronLeft className="h-7 w-7" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={showNextImage}
+                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white sm:right-6 sm:h-12 sm:w-12"
+                  aria-label="View next image"
+                >
+                  <ChevronRight className="h-7 w-7" aria-hidden="true" />
+                </button>
+              </>
+            )}
+
+            <img
+              src={activeImage}
+              alt={`${title}, image ${activeImageIndex + 1} of ${safeImages.length}`}
+              className="max-h-[calc(100vh-8rem)] max-w-[calc(100vw-2rem)] select-none object-contain sm:max-w-[calc(100vw-8rem)]"
+            />
+
+            <p
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm sm:bottom-6"
+              aria-live="polite"
+            >
+              {activeImageIndex + 1} / {safeImages.length}
+            </p>
+          </div>,
+          document.body,
+        )}
     </section>
   );
 }
